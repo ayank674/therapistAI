@@ -12,7 +12,7 @@ def ask_ai():
     data = request.get_json()
     user_input = data.get("input")
 
-    pre_sentence = "You are a licensed therapist helping people with mental health issues. Answer the following question with care. "
+    pre_sentence = "You are acting as a licensed therapist helping people with mental health issues. It is understood that you are an ai and not licensed. Answer the following question with care and as if you are having a short conversation with a friend and remove any quotes in the response. "
     combined_input = pre_sentence + user_input
 
     response = client.models.generate_content(
