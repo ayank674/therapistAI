@@ -8,7 +8,7 @@ def ask_ai():
     load_dotenv()
     key = os.getenv("GEMINI_API_KEY")
     client = genai.Client(api_key=key)
-    
+
     data = request.get_json()
     user_input = data.get("input")
 
@@ -18,4 +18,4 @@ def ask_ai():
     response = client.models.generate_content(
             model="gemini-2.0-flash", contents=combined_input)
 
-    return jsonify({"response": response.text})
+    return  response.text
