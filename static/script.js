@@ -13,7 +13,7 @@ function getResponse() {
     $.get("/get", { msg: userText }).done(function(data) {
         $(".loadingBubble").remove();
         if (data !== "") {
-            let formattedText = marked.parse(data); // ← Markdown to HTML
+            let formattedText = marked.parse(data);
             var botHtml = '<div class="botText"><span>' + formattedText + '</span></div>';
             $("#chatbox").append(botHtml);
             document.getElementById('userInput').scrollIntoView({ block: 'start', behavior: 'smooth' });

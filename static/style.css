@@ -109,7 +109,7 @@ h2 {
 }
 
 /* Text input field */
-#textInput, #username, #password, #confirmPassword {
+#textInput, #username, #password, #confirmPassword,#age,#location,#occupation,#gender {
     flex: 1;
     padding: 10px;
     border-radius: 8px;

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Edit Profile</title>
+    <link rel="stylesheet" href="../static/style.css">
+</head>
+<body>
+    <div class="loginContainer">
+        <h2>Edit Your Profile</h2>
+        <form method="POST" action="/edit-profile" class="loginForm">
+            <div class="formRow">
+                <label for="age">Age:</label>
+                <input type="number" id="age" name="age" value=>
+            </div>
+            <div class="formRow">
+                <label for="gender">Gender:</label>
+                <input type="text" id="gender" name="gender" value=>
+            </div>
+            <div class="formRow">
+                <label for="occupation">Occupation:</label>
+                <input type="text" id="occupation" name="occupation">
+            </div>
+            <div class="formRow">
+                <label for="location">Location:</label>
+                <input type="text" id="location" name="location">
+            </div>
+            
+            <button type="submit" id="buttonInput">Save</button>
+        </form>
+        <p style="margin-top: 15px;">
+            <a href="/">Back to Chat</a>
+        </p>
+    </div>
+</body>
+</html>
