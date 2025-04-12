@@ -3,12 +3,12 @@ import os
 from google import genai
 from flask import Blueprint, request, jsonify
 
-load_dotenv()
-key = os.getenv("GEMINI_API_KEY")
-
-client = genai.Client(api_key=key)
 
 def ask_ai():
+    load_dotenv()
+    key = os.getenv("GEMINI_API_KEY")
+    client = genai.Client(api_key=key)
+    
     data = request.get_json()
     user_input = data.get("input")
 
