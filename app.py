@@ -11,5 +11,9 @@ def main():
 def get():
     return api_usage.ask_ai(request.args.get("msg"))
 
+@app.route('/greet',methods=['GET'])
+def greet():
+    return api_usage.greet();
+
 if __name__ == "__main__":
     app.run()
