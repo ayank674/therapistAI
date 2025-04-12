@@ -1,16 +1,14 @@
 from dotenv import load_dotenv
 import os
-from google import generativeai as genai
+from google import genai
 from flask import Blueprint, request, jsonify
 
 
-def ask_ai():
+def ask_ai(user_input):
     load_dotenv()
     key = os.getenv("GEMINI_API_KEY")
     client = genai.Client(api_key=key)
 
-    data = request.get_json()
-    user_input = data.get("input")
 
     pre_sentence = "You are a licensed therapist helping people with mental health issues. Answer the following question with care. "
     combined_input = pre_sentence + user_input
@@ -19,3 +17,6 @@ def ask_ai():
             model="gemini-2.0-flash", contents=combined_input)
 
     return  response.text
+
+if __name__ == "__main__":
+    print(ask_ai("Hello"))
