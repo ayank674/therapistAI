@@ -1,6 +1,6 @@
 from dotenv import load_dotenv
 import os
-from google import genai
+from google import generativeai as genai
 from flask import Blueprint, request, jsonify
 
 
