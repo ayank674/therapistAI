@@ -7,5 +7,8 @@ def main():
     return render_template('index.html')
 
 @app.route('/get',methods=['GET'])
-def main():
-    return render_template('get.html')
+def get():
+    return "hello"
+
+if __name__ == "__main__":
+    app.run()
