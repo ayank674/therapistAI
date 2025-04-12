@@ -7,13 +7,17 @@ app = Flask(__name__)
 def main():
     return render_template('index.html')
 
+@app.route('/login')
+def login():
+    return render_template('login.html')
+
 @app.route('/get',methods=['GET'])
 def get():
     return api_usage.ask_ai(request.args.get("msg"))
 
 @app.route('/greet',methods=['GET'])
 def greet():
-    return api_usage.greet();
+    return api_usage.greet()
 
 if __name__ == "__main__":
     app.run()
