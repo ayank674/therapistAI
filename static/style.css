@@ -32,7 +32,7 @@ body {
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
     text-align: center;
     width: 100%;
-    max-width: 400px;
+    max-width: 450px;
 }
 
 /* Login form layout */
@@ -67,6 +67,15 @@ h2 {
 .userText, .botText {
     margin: 10px 0;
     clear: both;
+    display: flex;
+}
+
+.userText {
+    justify-content: flex-end; /* Push to the right */
+}
+
+.botText {
+    justify-content: flex-start; /* Push to the left */
 }
 
 /* Style for user messages */
@@ -74,6 +83,7 @@ h2 {
     background-color: #d2e8ff;
     padding: 10px 15px;
     border-radius: 20px;
+    border-bottom-right-radius: 0;
     max-width: 70%;
     display: inline-block;
     word-wrap: break-word;
@@ -84,6 +94,7 @@ h2 {
     background-color: #e4ffe4;
     padding: 10px 15px;
     border-radius: 20px;
+    border-bottom-left-radius: 0;
     max-width: 70%;
     display: inline-block;
     word-wrap: break-word;
@@ -123,4 +134,14 @@ h2 {
 #buttonInput:hover {
     background-color: #45a049;
 }
+.botText span p,
+.botText span ul,
+.botText span li {
+    margin: 0;
+    padding: 0;
+}
 
+/* Optional: slight spacing between list items for readability */
+.botText span li + li {
+    margin-top: 4px;
+}
