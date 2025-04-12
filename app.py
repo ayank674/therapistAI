@@ -9,7 +9,7 @@ def main():
 
 @app.route('/get',methods=['GET'])
 def get():
-    return "hello"
+    return api_usage.ask_ai()
 
 if __name__ == "__main__":
     app.run()
