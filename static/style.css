@@ -80,12 +80,13 @@ h2 {
 }
 
 /* Text input field */
-#textInput {
-    flex: 1;
+.textInput {
+    width: 100%;
     padding: 10px;
     border-radius: 8px;
     border: 1px solid #ccc;
     font-size: 16px;
+    margin-bottom: 10px;
 }
 
 /* Send button */
