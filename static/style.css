@@ -98,7 +98,7 @@ h2 {
 }
 
 /* Text input field */
-.textInput {
+#textInput {
     flex: 1;
     padding: 10px;
     border-radius: 8px;

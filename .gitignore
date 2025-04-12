@@ -2,3 +2,4 @@
 .vnev/*
 __pycache__/*
 venv/*
+backend/__pycache__/api_usage.cpython-311.pyc/*
