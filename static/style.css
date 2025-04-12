@@ -109,7 +109,7 @@ h2 {
 }
 
 /* Text input field */
-#textInput {
+#textInput, #username, #password, #confirmPassword {
     flex: 1;
     padding: 10px;
     border-radius: 8px;
@@ -144,4 +144,31 @@ h2 {
 /* Optional: slight spacing between list items for readability */
 .botText span li + li {
     margin-top: 4px;
+}
+
+.error {
+    color: red;
+    font-size: 14px;
+    margin-top: 5px;
+}
+
+.success {
+    color: green;
+    font-size: 14px;
+    margin-top: 5px;
+}
+
+#submitBtn {
+    padding: 10px 15px;
+    font-size: 16px;
+    border: none;
+    border-radius: 8px;
+    background-color: grey;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+#submitBtn.enabled {
+    background-color: #4caf50;
+    cursor: pointer;
 }
