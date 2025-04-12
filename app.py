@@ -5,7 +5,7 @@ app = Flask(__name__)
 
 @app.route('/')
 def main():
-    return render_template('index.html')
+    return render_template('login.html')
 
 @app.route('/login')
 def login():
@@ -19,5 +19,12 @@ def get():
 def greet():
     return api_usage.greet()
 
+@app.route('/edit-profile')
+def edit():
+    return render_template('edit-profile.html')
+
+@app.route('/signup')
+def signup():
+    return render_template('signup.html')
 if __name__ == "__main__":
     app.run()

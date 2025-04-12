@@ -9,6 +9,10 @@
         <h2>Edit Your Profile</h2>
         <form method="POST" action="/edit-profile" class="loginForm">
             <div class="formRow">
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" value=>
+            </div>
+            <div class="formRow">
                 <label for="age">Age:</label>
                 <input type="number" id="age" name="age" value=>
             </div>
@@ -24,12 +28,14 @@
                 <label for="location">Location:</label>
                 <input type="text" id="location" name="location">
             </div>
-            
+            <div class="formRow">
+                <label for="expectations">What do you want out of this app?</label>
+                <textarea id="expectations" name="goals" rows="4" cols="50" placeholder="Describe your goals..."></textarea>
+            </div>
+
             <button type="submit" id="buttonInput">Save</button>
         </form>
-        <p style="margin-top: 15px;">
-            <a href="/">Back to Chat</a>
-        </p>
+        <button id="buttonInput" class="btn" onclick="window.location.href='/'">Back to Chat</button>
     </div>
 </body>
 </html>
