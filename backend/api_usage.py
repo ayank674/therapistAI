@@ -15,7 +15,7 @@ def ask_ai(user_input):
     return  response.text
 
 def greet():
-    pre_prompt = "You are acting as a licensed therapist helping people with mental health issues. It is understood that you are an ai and not licensed. Answer the following question with care and as if you are having a short conversation with a friend and remove any quotes in the response. Now greet me"
+    pre_prompt = "You are acting as a licensed therapist helping people with mental health issues. It is understood that you are an ai and not licensed. Answer the following questions with care and as if you are having a short conversation with a friend and remove any quotes in the response. Now greet me"
 
     response = client.models.generate_content(
             model="gemini-2.0-flash", contents=pre_prompt)
