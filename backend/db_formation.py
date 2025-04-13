@@ -103,6 +103,13 @@ class UserData:
         else:
             return "No sessions found for this user."
         
+    def get_messages(self, user_id: str):
+        self.cursor.execute("""
+            SELECT message FROM cache WHERE user_id = %s;
+        """, (user_id,))
+        messages = self.cursor.fetchall()
+        return [msg[0] for msg in messages]
+        
     def check_user(self, user_id, password):
         self.cursor.execute("""
             SELECT password FROM demographics WHERE user_id = %s AND password = %s;
