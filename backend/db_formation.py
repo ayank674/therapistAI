@@ -51,7 +51,7 @@ class UserData:
             DO NOTHING;  -- Do nothing if the user already exists
         """, (user_id, password))
     
-    self.conn.commit()
+        self.conn.commit()
     
     def update_demographics(self, user_id: str, password: str, name: str, age: int, gender: str, location: str = None, occupation: str = None, expectations: str = None):
         self.cursor.execute("""
