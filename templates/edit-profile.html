@@ -4,38 +4,40 @@
     <title>Edit Profile</title>
     <link rel="stylesheet" href="../static/style.css">
 </head>
-<body>
-    <div class="loginContainer">
+<body id = "settings">
+    <div class="editContainer">
         <h2>Edit Your Profile</h2>
         <form method="POST" action="/edit-profile" class="loginForm">
-            <div class="formRow">
+            <div class="editRow">
                 <label for="name">Name:</label>
                 <input type="text" id="name" name="name" value=>
             </div>
-            <div class="formRow">
+            <div class="editRow">
                 <label for="age">Age:</label>
                 <input type="number" id="age" name="age" value=>
             </div>
-            <div class="formRow">
+            <div class="editRow">
                 <label for="gender">Gender:</label>
                 <input type="text" id="gender" name="gender" value=>
             </div>
-            <div class="formRow">
+            <div class="editRow">
                 <label for="occupation">Occupation:</label>
                 <input type="text" id="occupation" name="occupation">
             </div>
-            <div class="formRow">
+            <div class="editRow">
                 <label for="location">Location:</label>
                 <input type="text" id="location" name="location">
             </div>
-            <div class="formRow">
+            <div class="editRow">
                 <label for="expectations">What do you want out of this app?</label>
-                <textarea id="expectations" name="goals" rows="4" cols="50" placeholder="Describe your goals..."></textarea>
+                <textarea id="expectations" name="goals" rows="4" cols="50"></textarea>
             </div>
 
-            <button type="submit" id="buttonInput">Save</button>
+            <div class="buttonRow">
+                <button type="submit" id="buttonInput">Save</button>
+                <button type="button" id="buttonInput" onclick="window.location.href='/'">Back to Chat</button>
+            </div>
         </form>
-        <button id="buttonInput" class="btn" onclick="window.location.href='/'">Back to Chat</button>
     </div>
 </body>
 </html>
