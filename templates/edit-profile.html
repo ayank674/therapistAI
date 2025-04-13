@@ -9,6 +9,10 @@
         <h2>Edit Your Profile</h2>
         <form method="POST" action="/edit-profile" class="loginForm">
             <div class="editRow">
+                <label for="username">Username:</label>
+                <input type="text" id="username" name="username" value={{ user }} disabled>
+            </div>
+            <div class="editRow">
                 <label for="name">Name:</label>
                 <input type="text" id="name" name="name" value=>
             </div>

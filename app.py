@@ -5,7 +5,7 @@ app = Flask(__name__)
 
 @app.route('/')
 def main():
-   return render_template('index.html')
+   return render_template('index.html', username = "Ethan")
 
 @app.route('/login', methods=['POST','GET'])
 def login():
@@ -26,7 +26,7 @@ def get():
 
 @app.route('/edit-profile')
 def editProfile():
-    return render_template('edit-profile.html')
+    return render_template('edit-profile.html', user = "Ethan")
 
 
 @app.route('/greet',methods=['GET'])
