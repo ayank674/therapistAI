@@ -2,7 +2,7 @@ from dotenv import load_dotenv
 import os
 import psycopg
 from psycopg2 import sql
-
+import api_usage
 load_dotenv()
 
 conn_url = os.getenv("PG_URI")
@@ -112,9 +112,46 @@ class UserData:
 
         return bool(stored_password)
     
-    def clear_user_cache(self, user_id: str):
+    def clear_cache(self, user_id: str):
         self.cursor.execute("""
             DELETE FROM cache WHERE user_id = %s;
         """, (user_id,))
         
         self.conn.commit()
+
+if __name__ == "__main__":
+    user_data = UserData(os.getenv("PG_URI"))
+
+    user_data.add_demographics(user_id="user123", password="password123")
+    user_profile = user_data.get_demographics("user123")
+    print(f"User profile: {user_profile}")
+
+    user_data.update_demographics(
+        user_id="user123", 
+        password="password123", 
+        name="John Doe", 
+        age=30, 
+        gender="Male", 
+        location="New York", 
+        occupation="Engineer",
+        expectations="awesome"
+    )
+
+# Check user credentials
+    is_authenticated = user_data.check_user(user_id="user123", password="password123")
+    print(f"User authenticated: {is_authenticated}")
+
+# Retrieve user profile
+    user_profile = user_data.get_demographics("user123")
+    print(f"User profile: {user_profile}")
+
+# Add user and AI messages to the cache
+    user_data.add_cache(user_id="user123", message_type="user", message="How are you?")
+    user_data.add_cache(user_id="user123", message_type="ai", message="I'm doing well, thank you!")
+
+# Retrieve session data (cache)
+    user_cache = user_data.get_cache("user123")
+    print(f"User session data: {user_cache}")
+
+    reponse = api_usage.ask_ai(user_input="im upset", user_id="user123", user_data=user_data)
+    print(f"User session data: {user_cache}")
