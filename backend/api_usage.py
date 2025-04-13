@@ -17,7 +17,7 @@ def ask_ai(user_input, user_id, user_data):
     response = client.models.generate_content(
             model="gemini-2.0-flash", contents=conversation_context)
     
-    user_data.add_cache(user_id, "ai", response)
+    user_data.add_cache(user_id, "ai", response.text)
 
     return  response.text
 
@@ -28,7 +28,7 @@ def greet(user_id, user_data):
     response = client.models.generate_content(
             model="gemini-2.0-flash", contents=pre_prompt)
     
-    user_data.add_cache(user_id, "ai", response)
+    user_data.add_cache(user_id, "ai", response.text)
     return  response.text
 
 if __name__ == "__main__":
