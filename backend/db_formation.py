@@ -101,3 +101,15 @@ class UserData:
         stored_password = self.cursor.fetchone()
 
         return bool(stored_password)
+
+if __name__ == "__main__":
+    is_authenticated = user_data.check_user(user_id="user123", password="password123")
+    print(f"User authenticated: {is_authenticated}")
+
+    user_profile = user_data.get_demographics("user123")
+    print(f"User profile: {user_profile}")
+
+    user_data.add_cache(user_id="user123", session_data="User: How are you? AI: I'm doing well, thank you!")
+
+    user_cache = user_data.get_cache("user123")
+    print(f"User session data: {user_cache}")
