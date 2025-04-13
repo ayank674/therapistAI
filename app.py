@@ -9,7 +9,7 @@ db.create_tables()
 
 @app.route('/')
 def main():
-   return render_template('login.html')
+   return render_template('login.html', username = "Ethan")
 
 @app.route('/login', methods=['POST','GET'])
 def login():
@@ -30,16 +30,8 @@ def get():
 
 @app.route('/edit-profile',methods=['POST','GET'])
 def editProfile():
-    if request.method == 'GET':
-        return render_template('edit-profile.html')
-    return redirect("/chat")
+    return render_template('edit-profile.html')
 
-@app.route('/register', methods =['POST'])
-def register():
-   user = request.form.get("username")
-   password = request.form.get("password")
-   db.add_demographics(user,password)
-   return render_template('login.html')
 
 @app.route('/greet',methods=['GET'])
 def greet():

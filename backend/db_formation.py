@@ -42,15 +42,23 @@ class UserData:
         """)
     
         self.conn.commit()
-    
-    def add_demographics(self, user_id: str, password: str, name: str, age: int, gender: str, location: str = None, occupation: str = None, expectations: str = None):
+
+    def add_demographics(self, user_id: str, password: str):
         self.cursor.execute("""
-            INSERT INTO demographics (user_id, password, name, age, gender, location, occupation, expectations)
-            VALUES (%s, %s, %s, %s, %s, %s, %s, %s)
+            INSERT INTO demographics (user_id, password)
+            VALUES (%s, %s)
             ON CONFLICT (user_id) 
-            DO UPDATE SET
-                password = EXCLUDED.password, name = EXCLUDED.name, age = EXCLUDED.age, gender = EXCLUDED.gender, location = EXCLUDED.location, occupation = EXCLUDED.occupation, expectations = EXCLUDED.expectations;
-        """, (user_id, password, name, age, gender, location, occupation, expectations))
+            DO NOTHING;  -- Do nothing if the user already exists
+        """, (user_id, password))
+    
+        self.conn.commit()
+    
+    def update_demographics(self, user_id: str, password: str, name: str, age: int, gender: str, location: str = None, occupation: str = None, expectations: str = None):
+        self.cursor.execute("""
+            UPDATE demographics
+            SET password = %s, name = %s, age = %s, gender = %s, location = %s, occupation = %s, expectations = %s 
+            WHERE user_id = %s;
+        """, (password, name, age, gender, location, occupation, expectations, user_id))
         
         self.conn.commit()
 
@@ -103,31 +111,10 @@ class UserData:
         stored_password = self.cursor.fetchone()
 
         return bool(stored_password)
-
-if __name__ == "__main__":
-    user_data = UserData(os.getenv("PG_URI"))
-
     
-
-    user_data.add_demographics(
-        user_id="user123", 
-        password="password123", 
-        name="John Doe", 
-        age=30, 
-        gender="Male", 
-        location="New York", 
-        occupation="Engineer",
-        expectations="awesome"
-    )
-
-    is_authenticated = user_data.check_user(user_id="user123", password="password123")
-    print(f"User authenticated: {is_authenticated}")
-
-    user_profile = user_data.get_demographics("user123")
-    print(f"User profile: {user_profile}")
-
-    user_data.add_cache(user_id="user123", message_type="user", message="How are you?")
-    user_data.add_cache(user_id="user123", message_type="ai", message="I'm doing well, thank you!")
-
-    user_cache = user_data.get_cache("user123")
-    print(f"User session data: {user_cache}")
+    def clear_user_cache(self, user_id: str):
+        self.cursor.execute("""
+            DELETE FROM cache WHERE user_id = %s;
+        """, (user_id,))
+        
+        self.conn.commit()
