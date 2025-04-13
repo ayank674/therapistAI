@@ -108,9 +108,13 @@ h2 {
     margin-top: 15px;
 }
 
-/* Text input field */
-#textInput, #username, #password, #confirmPassword,#age,#location,#occupation,#gender {
-    flex: 1;
+* {
+    box-sizing: border-box;
+}
+
+/* Style for text input fields */
+#textInput, #username, #password, #confirmPassword, #age, #location, #occupation, #gender, #name, #expectations {
+    width: 100%;
     padding: 10px;
     border-radius: 8px;
     border: 1px solid #ccc;
@@ -118,9 +122,9 @@ h2 {
     margin-bottom: 15px;
 }
 
-/* Send button */
-#buttonInput {
-    padding: 10px 15px;
+/* Style for buttons to match text input width */
+#buttonInput, #submitBtn {
+    padding: 10px;
     font-size: 16px;
     border: none;
     border-radius: 8px;
@@ -128,12 +132,37 @@ h2 {
     color: white;
     cursor: pointer;
     transition: background-color 0.2s;
+    margin-bottom: 15px;
 }
 
-/* Hover effect for button */
-#buttonInput:hover {
+#buttonInput {
+    flex-grow: 3;
+}
+
+#submitBtn {
+    flex-grow: 1;
+}
+
+/* Hover effect for buttons */
+#buttonInput:hover, #submitBtn:hover {
     background-color: #45a049;
 }
+
+#topRightBtn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    padding: 10px;
+    font-size: 16px;
+    border: none;
+    border-radius: 8px;
+    background-color: #4caf50;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    margin-bottom: 15px;
+}
+
 .botText span p,
 .botText span ul,
 .botText span li {

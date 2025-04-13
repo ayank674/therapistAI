@@ -34,5 +34,12 @@ def editProfile():
 def greet():
     return api_usage.greet()
 
+@app.route('/edit-profile')
+def edit():
+    return render_template('edit-profile.html')
+
+@app.route('/signup')
+def signup():
+    return render_template('signup.html')
 if __name__ == "__main__":
     app.run()
