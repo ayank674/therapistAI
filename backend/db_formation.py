@@ -103,11 +103,16 @@ class UserData:
         stored_password = self.cursor.fetchone()
 
         return bool(stored_password)
+    
+    def clear_user_cache(self, user_id: str):
+        self.cursor.execute("""
+            DELETE FROM cache WHERE user_id = %s;
+        """, (user_id,))
+        
+        self.conn.commit()
 
 if __name__ == "__main__":
     user_data = UserData(os.getenv("PG_URI"))
-
-    
 
     user_data.add_demographics(
         user_id="user123", 
