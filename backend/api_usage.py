@@ -1,7 +1,7 @@
 from dotenv import load_dotenv
 import os
 from google import genai
-from backend import db_formation
+import db_formation
 
 load_dotenv()
 key = os.getenv("GEMINI_API_KEY")
@@ -9,12 +9,14 @@ client = genai.Client(api_key=key)
 
 def ask_ai(user_input, user_id, user_data):
 
-    conversation_history = user_data.get_cache(user_id) 
+    user_data.add_cache(user_id, "user", user_input)
+
+    conversation_history = user_data.get_messages(user_id) 
+    conversation_context = "\n".join(conversation_history)
 
     response = client.models.generate_content(
-            model="gemini-2.0-flash", contents=conversation_history + user_input)
+            model="gemini-2.0-flash", contents=conversation_context)
     
-    user_data.add_cache(user_id, "user", user_input)
     user_data.add_cache(user_id, "ai", response)
 
     return  response.text
