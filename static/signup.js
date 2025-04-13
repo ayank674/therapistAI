@@ -10,7 +10,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const username = document.getElementById('username').value;
         const password = document.getElementById('password').value;
         const confirmPassword = document.getElementById('confirmPassword').value;
-        const submitBtn = document.getElementById('submitBtn');
+        const submitBtn = document.getElementById('buttonInput');
         const errorElement = document.getElementById('passwordError');
 
         let isValid = true;
@@ -35,6 +35,5 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
         submitBtn.disabled = !isValid;
-        submitBtn.classList.toggle('enabled', isValid);
     }
 });

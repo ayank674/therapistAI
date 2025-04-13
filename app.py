@@ -5,7 +5,7 @@ app = Flask(__name__)
 
 @app.route('/')
 def main():
-   return render_template('edit-profile.html')
+   return render_template('signup.html')
 
 @app.route('/login', methods=['POST','GET'])
 def login():
@@ -16,7 +16,7 @@ def login():
    return render_template("index.html")
    
 
-@app.route('/chat')
+@app.route('/chat',methods=['POST','GET'])
 def chat():
     return render_template('index.html')
 
@@ -24,22 +24,23 @@ def chat():
 def get():
    return api_usage.ask_ai(request.args.get('msg'))
 
-@app.route('/edit-profile')
+@app.route('/edit-profile',methods=['POST','GET'])
 def editProfile():
-    back2chat = request.form.get()
-    return render_template('edit-profile.html')
+    if request.method == 'GET':
+        return render_template('edit-profile.html')
+    return redirect("/chat")
 
+@app.route('/register', methods =['POST'])
+def register():
+   return render_template('login.html')
 
 @app.route('/greet',methods=['GET'])
 def greet():
     return api_usage.greet()
 
-@app.route('/edit-profile')
-def edit():
-    return render_template('edit-profile.html')
-
 @app.route('/signup')
 def signup():
     return render_template('signup.html')
+
 if __name__ == "__main__":
     app.run()
