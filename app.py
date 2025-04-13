@@ -5,7 +5,7 @@ app = Flask(__name__)
 
 @app.route('/')
 def main():
-   return render_template('edit-profile.html')
+   return render_template('index.html')
 
 @app.route('/login', methods=['POST','GET'])
 def login():
@@ -26,17 +26,12 @@ def get():
 
 @app.route('/edit-profile')
 def editProfile():
-    back2chat = request.form.get()
     return render_template('edit-profile.html')
 
 
 @app.route('/greet',methods=['GET'])
 def greet():
     return api_usage.greet()
-
-@app.route('/edit-profile')
-def edit():
-    return render_template('edit-profile.html')
 
 @app.route('/signup')
 def signup():
