@@ -38,3 +38,8 @@ $("#textInput").keypress(function(e) {
 $("#buttonInput").click(function() {
     getResponse();
 });
+
+$("#topRightBtn").click( function() {
+    let user = $("#user").text;
+    $.get("/edit-profile", {user: user})
+});

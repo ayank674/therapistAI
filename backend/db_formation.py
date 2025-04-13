@@ -53,12 +53,12 @@ class UserData:
     
         self.conn.commit()
     
-    def update_demographics(self, user_id: str, password: str, name: str, age: int, gender: str, location: str = None, occupation: str = None, expectations: str = None):
+    def update_demographics(self, user_id: str, name: str, age: int, gender: str, location: str = None, occupation: str = None, expectations: str = None):
         self.cursor.execute("""
             UPDATE demographics
-            SET password = %s, name = %s, age = %s, gender = %s, location = %s, occupation = %s, expectations = %s 
+            SET name = %s, age = %s, gender = %s, location = %s, occupation = %s, expectations = %s 
             WHERE user_id = %s;
-        """, (password, name, age, gender, location, occupation, expectations, user_id))
+        """, (name, age, gender, location, occupation, expectations, user_id))
         
         self.conn.commit()
 

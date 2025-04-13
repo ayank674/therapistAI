@@ -9,20 +9,22 @@ db.create_tables()
 
 @app.route('/')
 def main():
-   return render_template('login.html', username = "Ethan")
+   return render_template('login.html')
 
 @app.route('/login', methods=['POST','GET'])
 def login():
+   if request.method != 'POST':
+    return render_template('login.html')
    user = request.form.get("username")
    password = request.form.get("password")
    if not db.check_user(user,password):
     return render_template('login.html')
-   return render_template("index.html")
+   return render_template("index.html", user=user)
    
 
 @app.route('/chat',methods=['POST','GET'])
 def chat():
-    return render_template('index.html')
+    return render_template('index.html', request.args.get('user'))
 
 @app.route('/get')
 def get():
@@ -30,7 +32,12 @@ def get():
 
 @app.route('/edit-profile',methods=['POST','GET'])
 def editProfile():
-    return render_template('edit-profile.html')
+    if request.method == 'POST':
+        db.update_demographics(request.form.get('user'),request.form.get('name'),request.form.get('age'),
+                            request.form.get('gender'),request.form.get('location'),request.form.get('occupation'),
+                            request.form.get('expectations'))
+        return render_template('index.html', request.form.get('user'))
+    return render_template('edit-profile.html', user = request.form.get('user'))
 
 
 @app.route('/greet',methods=['GET'])

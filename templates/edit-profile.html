@@ -9,6 +9,10 @@
         <h2>Edit Your Profile</h2>
         <form method="POST" action="/edit-profile" class="loginForm">
             <div class="editRow">
+                <label for="name">User:</label>
+                <input type="text" id="user" name="user" value={{user}}>
+            </div>
+            <div class="editRow">
                 <label for="name">Name:</label>
                 <input type="text" id="name" name="name" value=>
             </div>
@@ -38,13 +42,9 @@
                 <button type="button" id="backToChat" onclick="window.location.href='/'">Back to Chat</button>
             </div>
         </form>
-<<<<<<< HEAD
         <p style="margin-top: 15px;">
             <a href="/chat">Back to Chat</a>
         </p>
-=======
-        <button id="buttonInput" class="btn" onclick="window.location.href='/'">Back to Chat</button>
->>>>>>> 716abff6619622fff0d6fe354aa92dfba3e8e1fa
     </div>
 </body>
 </html>
