@@ -16,8 +16,10 @@
             <button id="buttonInput">Send</button>
         </div>
     </div>
-    <p class="loggedUser">Logged in as: <strong id="user">{{ username }}</strong></p>
-    <button id="topRightBtn" class="btn">Edit Profile</button>
+    <form action="/edit-profile" method="get">
+    <p class="loggedUser">Logged in as: <input id="loggedUserinp" value= {{username}} readonly name="user"></p>
+    <button type="submit" id="topRightBtn" class="btn" >Edit Profile</button>
+</form>
     <script src="../static/script.js"></script>
 </body>
 </html>

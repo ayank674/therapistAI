@@ -1,10 +1,10 @@
 from flask import Flask, render_template, request,redirect, url_for
 from backend import api_usage
 from backend import db_formation
-from dotenv import load_dotenv
+import os
 
 app = Flask(__name__)
-db = db_formation(load_dotenv('PG_URI'))
+db = db_formation.UserData(os.getenv('PG_URI'))
 db.create_tables()
 
 @app.route('/')
@@ -19,8 +19,12 @@ def login():
    password = request.form.get("password")
    if not db.check_user(user,password):
     return render_template('login.html')
-   return render_template("index.html", user=user)
+   return render_template("index.html", username=user)
    
+@app.route('/register', methods=['POST'])
+def register():
+   db.add_demographics(request.form.get('username'), request.form.get('password'))
+   return render_template("login.html")
 
 @app.route('/chat',methods=['POST','GET'])
 def chat():
@@ -33,11 +37,11 @@ def get():
 @app.route('/edit-profile',methods=['POST','GET'])
 def editProfile():
     if request.method == 'POST':
-        db.update_demographics(request.form.get('user'),request.form.get('name'),request.form.get('age'),
+        db.update_demographics(request.form.get('user'),request.form.get('name'),request.form.get('age') if request.form.get('age') else 0,
                             request.form.get('gender'),request.form.get('location'),request.form.get('occupation'),
                             request.form.get('expectations'))
-        return render_template('index.html', request.form.get('user'))
-    return render_template('edit-profile.html', user = request.form.get('user'))
+        return render_template('index.html', username=request.form.get('user'))
+    return render_template('edit-profile.html', user = request.args.get('user'))
 
 
 @app.route('/greet',methods=['GET'])

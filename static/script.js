@@ -10,7 +10,8 @@ function getResponse() {
         $("#chatbox").append(loadingBubble);
         document.getElementById('userInput').scrollIntoView({ block: 'start', behavior: 'smooth' });
     }
-    $.get("/get", { msg: userText }).done(function(data) {
+    let user = $("#loggedUserinp").val();
+    $.get("/get", { msg: userText, user:user }).done(function(data) {
         $(".loadingBubble").remove();
         if (data !== "") {
             let formattedText = marked.parse(data);
@@ -37,9 +38,4 @@ $("#textInput").keypress(function(e) {
 });
 $("#buttonInput").click(function() {
     getResponse();
-});
-
-$("#topRightBtn").click( function() {
-    let user = $("#user").text;
-    $.get("/edit-profile", {user: user})
 });

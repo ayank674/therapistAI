@@ -2,8 +2,7 @@ from dotenv import load_dotenv
 import os
 import psycopg
 from psycopg2 import sql
-import api_usage
-load_dotenv()
+# import api_usage
 
 conn_url = os.getenv("PG_URI")
 
